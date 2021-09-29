@@ -1,47 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Todo
 {
     public class TodoSet
     {
         public List<Todo> Todos;
-        public List<Doing> Doings;
-        public List<Review> Reviews;
-        public List<Done> Dones;
+        string[] monkey = { "Feed the monkey" };
 
         public TodoSet()
         {
             Todos = new List<Todo>();
-            Doings = new List<Doing>();
-            Reviews = new List<Review>();
-            Dones = new List<Done>();
         }
         public void AddTodo(Todo todo)
         {
             Todos.Add(todo);
-        }
-        public void AddDoing(Doing doing)
-        {
-            Doings.Add(doing);
-        }
-        public void AddReview(Review review)
-        {
-            Reviews.Add(review);
-        }
-        public void RemoveDone(Done done)
-        {
-            Dones.Remove(done);
+            string path = @"./todoTasks.txt";
+            try
+            {// \n nám plní funkci enteru, ale abychom to mohli zavolat ve funkci, která bere parametr
+             // typu pole stringu neboli string[] nebol array stringu, tak jsme z toho museli
+             // udělat string []
+
+                //na nový řádek přidáváme nový string monkey
+                File.AppendAllLines(path, new string[] { "\n" });
+                File.AppendAllLines(path, monkey);
+                foreach (var todoes in Todos)
+                {
+                    Console.WriteLine($"{todoes.todo}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to read file");
+            }
         }
         public void WriteTasks(Todo todo)
         {
             foreach (var todoes in Todos)
             {
-                if (args == -l)
-                {
-                    Console.Write($"{Todos}");
-                }
+                Console.Write($"{todoes.todo}");
             }
+        }
+        public void RemoveTask(Todo todo)
+        {
+            Todos.Remove(todo);
+        }
+        public bool CompleteTask(Todo todo)
+        {
+            return true;
+        }
+        public void TodoDoing()
+        {
+
+        }
+        public void TodoReview()
+        {
+
+        }
+        public void TodoDone()
+        {
+
         }
     }
 }

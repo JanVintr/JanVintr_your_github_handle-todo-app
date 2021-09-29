@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Todo 
 {
-    public class Todo : TodoSet
+    public class Todo 
 {
     public List<Todo> Todos;
-    private string task;
-    private string todo;
+    private string task { get; set; } 
+    public string todo { get; set; }
 
     public Todo(string Task, string Todo)
     {
@@ -19,5 +20,7 @@ namespace Todo
     {
         Console.WriteLine(todo);
     }
-}
+
+       
+    }
 }
